@@ -7,7 +7,7 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Source Code Pro:siz1=12", "Font Awesome 5 Brands Regular:size=11:style=bold", "Font Awesome 5 Free Solid:size=11:style=bold", "Font Awesome 5 Free Regular:size=11:style=bold"};
+static const char *fonts[]          = { "Source Code Pro:size=11", "Font Awesome 5 Brands Regular:size=11:style=bold", "Font Awesome 5 Free Solid:size=11:style=bold", "Font Awesome 5 Free Regular:size=11:style=bold"};
 static const char dmenufont[]       = "Hack Nerd Font:size=12";
 static const char col_gray[]       = "#aaaaaa";
 static const char col_red[]       = "#ff0000";
@@ -39,6 +39,7 @@ static const Rule rules[] = {
 	{ "uninstall",		NULL,       NULL,       NULL,       1,           -1 },
 	{ "mocp",			NULL,       NULL,       NULL,       1,           -1 },
 	{ "Pqiv",			NULL,       NULL,       NULL,       1,           -1 },
+	{ "dwm",			NULL,       NULL,       NULL,       1,           -1 },
 
 };
 
@@ -75,7 +76,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
-	{ MODKEY,                       XK_a,	   spawn,          SHCMD("dmenu_run -fn \"Hack Nerd Font:size=14\" -l 30") },
+	{ MODKEY,                       XK_a,	   spawn,          SHCMD("dmenu_run") },
 	// { MODKEY|ControlMask,			XK_b,      togglebar,      {0} },
 	{ MODKEY|ControlMask,			XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_Right,  focusstack,     {.i = +1 } },
@@ -100,7 +101,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
-	{ MODKEY|ShiftMask,				 XK_r,        spawn,    SHCMD("st bash -c \"make -C ~/.config/dwm/ && killall dwm || read\"") },
+	{ MODKEY|ShiftMask,				 XK_r,        spawn,    SHCMD("st -c dwm bash -c \"cd /home/kirito/.cache/yay/dwm && makepkg -if && killall dwm || read\"") },
 	{ MODKEY,                        XK_s,     spawn,       SHCMD("subl3") },
     { MODKEY,                        XK_b,     spawn,       SHCMD("pgrep firefox && wmctrl -x -a Firefox || firefox") },
     { MODKEY,                        XK_e,     spawn,       SHCMD("wmctrl -x -a ranger || st -c ranger -n ranger bash -c \"wmctrl -lp | grep $$ | awk '{print $1}' | xargs wmctrl -i -a; ranger\"") },
