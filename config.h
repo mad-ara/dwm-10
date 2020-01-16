@@ -7,7 +7,7 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Source Code Pro:size=11", "Font Awesome 5 Brands Regular:size=11:style=bold", "Font Awesome 5 Free Solid:size=11:style=bold", "Font Awesome 5 Free Regular:size=11:style=bold"};
+static const char *fonts[]          = { "Source Code Pro:size=11:style=bold", "Font Awesome 5 Brands Regular:size=11:style=bold", "Font Awesome 5 Free Solid:size=11:style=bold", "Font Awesome 5 Free Regular:size=11:style=bold"};
 static const char dmenufont[]       = "Hack Nerd Font:size=12";
 static const char col_gray[]       = "#aaaaaa";
 static const char col_red[]       = "#ff0000";
@@ -40,6 +40,7 @@ static const Rule rules[] = {
 	{ "mocp",			NULL,       NULL,       NULL,       1,           -1 },
 	{ "Pqiv",			NULL,       NULL,       NULL,       1,           -1 },
 	{ "dwm",			NULL,       NULL,       NULL,       1,           -1 },
+	{ "qalc",			NULL,       "qalc",     NULL,       1,           -1 },
 
 };
 
@@ -124,13 +125,15 @@ static Key keys[] = {
     { MODKEY|ControlMask,            XK_l,        spawn,       SHCMD("firefox-search") },
     { MODKEY|ShiftMask,              XK_b,        spawn,       SHCMD("open-book") },
     { MODKEY|ShiftMask,              XK_c,        spawn,       SHCMD("open-config") },
-    { MODKEY ,           			 XK_q,   	  spawn,       SHCMD("rofi -show calc -modi \"calc:qalc +u8 -nocurrencies\"") },
+    // { MODKEY ,           			 XK_q,   	  spawn,       SHCMD("rofi -show calc -modi \"calc:qalc +u8 -nocurrencies\"") },
+    { MODKEY ,           			 XK_q,   	  spawn,       SHCMD("st -c qalc qalc") },
     { MODKEY|ShiftMask,              XK_y,        spawn,       SHCMD("loginctl reboot") },
     { MODKEY|ShiftMask,              XK_s,        spawn,       SHCMD("loginctl suspend") },
     { MODKEY|ShiftMask,              XK_x,        spawn,       SHCMD("killall xinit") },
     // { MODKEY,                        XK_a,       spawn,     	SHCMD("rofi -show run") },
     { MODKEY|ShiftMask,              XK_Delete,  spawn,       SHCMD("delete-song-wallpaper s") },
     { MODKEY|ControlMask,            XK_Delete,  spawn,       SHCMD("delete-song-wallpaper i") },
+    { MODKEY|ControlMask,            XK_x,  spawn,       SHCMD("xrdb -load ~/.Xresources") },
     { MODKEY,                       XK_d,       spawn,     	   SHCMD("song-select") },
     { MODKEY|ShiftMask,				XK_d,       spawn,     	   SHCMD("song-select a") },
     // { MODKEY,                       XK_f,		fullscreen,     {0} },

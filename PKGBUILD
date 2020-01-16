@@ -1,6 +1,6 @@
 pkgname=dwm
 gitname=dwm
-pkgver=0.8.2
+pkgver=6.2
 pkgrel=1
 pkgdesc='Dynamic Window Manager for X'
 arch=('x86_64')
