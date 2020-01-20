@@ -105,7 +105,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,				 XK_r,        spawn,    SHCMD("st -c dwm bash -c \"cd /home/kirito/.cache/yay/dwm && makepkg -if && killall dwm || read\"") },
 	{ MODKEY,                        XK_s,     spawn,       SHCMD("subl3") },
     { MODKEY,                        XK_b,     spawn,       SHCMD("pgrep firefox && wmctrl -x -a Firefox || firefox") },
-    { MODKEY,                        XK_e,     spawn,       SHCMD("wmctrl -x -a ranger || st -c ranger -n ranger bash -c \"wmctrl -lp | grep $$ | awk '{print $1}' | xargs wmctrl -i -a; ranger\"") },
+    { MODKEY,                        XK_e,     spawn,       SHCMD("wmctrl -x -a mpv || wmctrl -x -a ranger || st -c ranger -n ranger bash -c \"wmctrl -lp | grep $$ | awk '{print $1}' | xargs wmctrl -i -a; ranger\"") },
     { MODKEY|ShiftMask,              XK_e,     spawn,       SHCMD("st -c ranger -n ranger bash -c \"wmctrl -lp | grep $$ | awk '{print $1}' | xargs wmctrl -i -a; ranger\"") },
     { MODKEY,                        XK_t,        spawn,       SHCMD("wmctrl -x -a St || st bash -c \"wmctrl -lp | grep $$ | awk '{print $1}' | xargs wmctrl -i -a; bash\"") },
     { MODKEY,                        XK_Return,   spawn,       SHCMD("st bash -c \"wmctrl -lp | grep $$ | awk '{print $1}' | xargs wmctrl -i -a; bash\"") },
