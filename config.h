@@ -41,7 +41,7 @@ static const Rule rules[] = {
 	{ "Pqiv",			NULL,       NULL,       NULL,       1,           -1 },
 	{ "dwm",			NULL,       NULL,       NULL,       1,           -1 },
 	{ "qalc",			NULL,       "qalc",     NULL,       1,           -1 },
-
+	{ "qalc",			NULL,       NULL,     	NULL,       1,           -1 },
 };
 
 /* layout(s) */
