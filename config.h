@@ -1,4 +1,4 @@
-static const unsigned int borderpx  = 3;        /* border pixel of windows */
+static const unsigned int borderpx  = 4;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 // static const unsigned int gappx     = 0;        /* gaps between windows */
@@ -6,7 +6,7 @@ static const unsigned int systrayspacing = 1;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
+static const int topbar             = 0;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Source Code Pro:size=11:style=bold", "Font Awesome 5 Brands Regular:size=11:style=bold", "Font Awesome 5 Free Solid:size=11:style=bold", "Font Awesome 5 Free Regular:size=11:style=bold"};
 static const char dmenufont[]       = "Hack Nerd Font:size=12";
 static const char col_gray[]       = "#aaaaaa";
@@ -102,7 +102,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
-	{ MODKEY|ShiftMask,				 XK_r,        spawn,    SHCMD("st -c dwm bash -c \"cd /home/kirito/.cache/yay/dwm && makepkg -if && killall dwm || read\"") },
+	{ MODKEY|ShiftMask,				 XK_r,        spawn,    SHCMD("st -c dwm bash -c \"cd /home/kirito/.cache/dwm && makepkg -if && killall dwm || read\"") },
 	{ MODKEY,                        XK_s,     spawn,       SHCMD("subl3") },
     { MODKEY,                        XK_b,     spawn,       SHCMD("pgrep waterfox && wmctrl -x -a Waterfox || waterfox-current") },
     { MODKEY,                        XK_e,     spawn,       SHCMD("wmctrl -x -a mpv || wmctrl -x -a ranger || st -c ranger -n ranger bash -c \"wmctrl -lp | grep $$ | awk '{print $1}' | xargs wmctrl -i -a; ranger\"") },
