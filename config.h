@@ -1,7 +1,7 @@
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
-static const unsigned int gappx     = 8;        /* gaps between windows */
+// static const unsigned int gappx     = 0;        /* gaps between windows */
 static const unsigned int systrayspacing = 1;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 1;     /* 0 means no systray */
@@ -13,13 +13,12 @@ static const char col_gray[]       = "#aaaaaa";
 static const char col_red[]       = "#ff0000";
 static const char col_green[]       = "#00ff00";
 static const char col_yellow[]     = "#ff5555";
-static const char col_black[]      = "#0e151b";
+static const char col_black[]      = "#0c0e10";
 static const char col_white[]      = "#ffffff";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_white, col_black, col_green },
+	[SchemeNorm] = { col_white, col_black, col_black },
 	[SchemeSel]  = { col_black, col_yellow, col_red },
-	[SchemeTitle]  = { col_yellow, col_black, col_black  },
 };
 
 /* tagging */
@@ -30,6 +29,7 @@ static const Rule rules[] = {
 
 	/* class      	instance    title       tags mask     isfloating   monitor */
 	{ "firefox",  		NULL,       NULL,       1<<0,       0,           -1 },
+	{ "Waterfox",  		NULL,       NULL,       1<<0,       0,           -1 },
 	{ "ranger",  		NULL,       NULL,       1<<1,       0,           -1 },
 	{ "St",				NULL,       NULL,       1<<2,       0,           -1 },
 	{ "Subl3",  		NULL,       NULL,       1<<3,       0,           -1 },
@@ -74,9 +74,9 @@ static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
-	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
+	// { MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
+	// { MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
+	// { MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
 	{ MODKEY,                       XK_a,	   spawn,          SHCMD("dmenu_run") },
 	// { MODKEY|ControlMask,			XK_b,      togglebar,      {0} },
 	{ MODKEY|ControlMask,			XK_b,      togglebar,      {0} },
@@ -104,7 +104,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_5,                      4)
 	{ MODKEY|ShiftMask,				 XK_r,        spawn,    SHCMD("st -c dwm bash -c \"cd /home/kirito/.cache/yay/dwm && makepkg -if && killall dwm || read\"") },
 	{ MODKEY,                        XK_s,     spawn,       SHCMD("subl3") },
-    { MODKEY,                        XK_b,     spawn,       SHCMD("pgrep firefox && wmctrl -x -a Firefox || firefox") },
+    { MODKEY,                        XK_b,     spawn,       SHCMD("pgrep waterfox && wmctrl -x -a Waterfox || waterfox-current") },
     { MODKEY,                        XK_e,     spawn,       SHCMD("wmctrl -x -a mpv || wmctrl -x -a ranger || st -c ranger -n ranger bash -c \"wmctrl -lp | grep $$ | awk '{print $1}' | xargs wmctrl -i -a; ranger\"") },
     { MODKEY|ShiftMask,              XK_e,     spawn,       SHCMD("st -c ranger -n ranger bash -c \"wmctrl -lp | grep $$ | awk '{print $1}' | xargs wmctrl -i -a; ranger\"") },
     { MODKEY,                        XK_t,        spawn,       SHCMD("wmctrl -x -a St || st bash -c \"wmctrl -lp | grep $$ | awk '{print $1}' | xargs wmctrl -i -a; bash\"") },
