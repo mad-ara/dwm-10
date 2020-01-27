@@ -1,4 +1,4 @@
-static const unsigned int borderpx  = 4;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 // static const unsigned int gappx     = 0;        /* gaps between windows */
@@ -7,23 +7,20 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Source Code Pro:size=11:style=bold", "Font Awesome 5 Brands Regular:size=11:style=bold", "Font Awesome 5 Free Solid:size=11:style=bold", "Font Awesome 5 Free Regular:size=11:style=bold"};
+static const char *fonts[]          = {"Source Code Pro:size=11:style=bold", "Font Awesome 5 Brands Regular:size=11:style=bold", "Font Awesome 5 Free Solid:size=11:style=bold", "Font Awesome 5 Free Regular:size=11:style=bold"};
 static const char dmenufont[]       = "Hack Nerd Font:size=12";
-static const char col_gray[]       = "#aaaaaa";
-static const char col_red[]       = "#ff0000";
-static const char col_green[]       = "#00ff00";
-static const char col_yellow[]     = "#ff5555";
-static const char col_black[]      = "#0c0e10";
-static const char col_white[]      = "#ffffff";
+static const char col_gray[]       	= "#0e151b";
+static const char col_black[]      	= "#0c0e10";
+static const char col_white[]      	= "#ffffff";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_white, col_black, col_black },
-	[SchemeSel]  = { col_black, col_yellow, col_red },
+	[SchemeNorm] = { col_white, col_gray, col_black },
+	[SchemeSel]  = { col_black, col_white, col_white },
 };
 
 /* tagging */
 // static const char *tags[] = { "", "", "", "", ""};
-static const char *tags[] = { "", "", "", "", ""};
+static const char *tags[] = { "", "", "", "", "", ""};
 
 static const Rule rules[] = {
 
@@ -34,6 +31,7 @@ static const Rule rules[] = {
 	{ "St",				NULL,       NULL,       1<<2,       0,           -1 },
 	{ "Subl3",  		NULL,       NULL,       1<<3,       0,           -1 },
 	{ "Zathura",  		NULL,       NULL,       1<<4,       1,           -1 },
+	{ NULL,		   "libreoffice",   NULL,       1<<5,       1,           -1 },
 	{ "mail",  			NULL,       NULL,       NULL,       1,           -1 },
 	{ "downloads",		NULL,       NULL,       NULL,       1,           -1 },
 	{ "uninstall",		NULL,       NULL,       NULL,       1,           -1 },
@@ -60,8 +58,10 @@ static const Layout layouts[] = {
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
+	// { MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
+	{ MODKEY|ControlMask,           KEY,      view,     {.ui = 1 << TAG} }, \
+	{ MODKEY|ControlMask,           KEY,      tag,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
@@ -102,9 +102,11 @@ static Key keys[] = {
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
-	{ MODKEY|ShiftMask,				 XK_r,        spawn,    SHCMD("st -c dwm bash -c \"cd /home/kirito/.cache/dwm && makepkg -if && killall dwm || read\"") },
+	TAGKEYS(                        XK_6,                      5)
+	{ MODKEY|ShiftMask,				 XK_r,        spawn,    SHCMD("st -c dwm bash -c \"cd /home/kirito/.cache/packages/dwm && [[ \"$(nmcli networking connectivity check)\" = \"full\" ]] && makepkg -if || makepkg -ief; [[ \"$?\" = \"0\" ]] && killall dwm || read\"") },
 	{ MODKEY,                        XK_s,     spawn,       SHCMD("subl3") },
     { MODKEY,                        XK_b,     spawn,       SHCMD("pgrep waterfox && wmctrl -x -a Waterfox || waterfox-current") },
+    { MODKEY,                        XK_l,     spawn,       SHCMD("libre-launch") },
     { MODKEY,                        XK_e,     spawn,       SHCMD("wmctrl -x -a mpv || wmctrl -x -a ranger || st -c ranger -n ranger bash -c \"wmctrl -lp | grep $$ | awk '{print $1}' | xargs wmctrl -i -a; ranger\"") },
     { MODKEY|ShiftMask,              XK_e,     spawn,       SHCMD("st -c ranger -n ranger bash -c \"wmctrl -lp | grep $$ | awk '{print $1}' | xargs wmctrl -i -a; ranger\"") },
     { MODKEY,                        XK_t,        spawn,       SHCMD("wmctrl -x -a St || st bash -c \"wmctrl -lp | grep $$ | awk '{print $1}' | xargs wmctrl -i -a; bash\"") },
