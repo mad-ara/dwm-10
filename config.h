@@ -58,11 +58,9 @@ static const Layout layouts[] = {
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
-	// { MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
-	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask,           KEY,      view,     {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask,           KEY,      tag,     {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
+    { MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
+    { MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
+    { MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -106,6 +104,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,				 XK_r,        spawn,    SHCMD("st -c dwm bash -c \"cd /home/kirito/.cache/packages/dwm && [[ \"$(nmcli networking connectivity check)\" = \"full\" ]] && makepkg -if || makepkg -ief; [[ \"$?\" = \"0\" ]] && killall dwm || read\"") },
 	{ MODKEY,                        XK_s,     spawn,       SHCMD("subl3") },
     { MODKEY,                        XK_b,     spawn,       SHCMD("pgrep waterfox && wmctrl -x -a Waterfox || waterfox-current") },
+    { MODKEY,                        XK_z,     spawn,       SHCMD("wmctrl -x -a Zathura || open-book") },
     { MODKEY,                        XK_l,     spawn,       SHCMD("libre-launch") },
     { MODKEY,                        XK_e,     spawn,       SHCMD("wmctrl -x -a mpv || wmctrl -x -a ranger || st -c ranger -n ranger bash -c \"wmctrl -lp | grep $$ | awk '{print $1}' | xargs wmctrl -i -a; ranger\"") },
     { MODKEY|ShiftMask,              XK_e,     spawn,       SHCMD("st -c ranger -n ranger bash -c \"wmctrl -lp | grep $$ | awk '{print $1}' | xargs wmctrl -i -a; ranger\"") },
