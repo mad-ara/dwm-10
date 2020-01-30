@@ -2,7 +2,7 @@ static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 // static const unsigned int gappx     = 0;        /* gaps between windows */
-static const unsigned int systrayspacing = 1;   /* systray spacing */
+static const unsigned int systrayspacing = 5;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
@@ -126,6 +126,8 @@ static Key keys[] = {
     { MODKEY|ControlMask,            XK_l,        spawn,       SHCMD("firefox-search") },
     { MODKEY|ShiftMask,              XK_b,        spawn,       SHCMD("open-book") },
     { MODKEY|ShiftMask,              XK_c,        spawn,       SHCMD("open-config") },
+    { MODKEY|ShiftMask,            	XK_period,  spawn,       SHCMD("light -A 1") },
+    { MODKEY|ShiftMask,            	XK_comma,  spawn,       SHCMD("light -U 1") },
     // { MODKEY ,           			 XK_q,   	  spawn,       SHCMD("rofi -show calc -modi \"calc:qalc +u8 -nocurrencies\"") },
     { MODKEY ,           			 XK_q,   	  spawn,       SHCMD("st -c qalc qalc") },
     { MODKEY|ShiftMask,              XK_y,        spawn,       SHCMD("loginctl reboot") },
@@ -139,7 +141,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask,				XK_d,       spawn,     	   SHCMD("song-select a") },
     // { MODKEY,                       XK_f,		fullscreen,     {0} },
     // { MODKEY,             			XK_f,      togglefullscr,  {0} },
-    { MODKEY,                       XK_f,       spawn,     	   SHCMD("tog-fs") },
+    { MODKEY,                       XK_f,       spawn,     	   SHCMD("wmctrl -r :ACTIVE: -b toggle,fullscreen") },
     { MODKEY,                       XK_p,       spawn,     	   SHCMD("uninstall") },
     { MODKEY|ShiftMask,             XK_s,       spawn,     	   SHCMD("systemctl suspend -i") },
     { MODKEY|ShiftMask,             XK_y,       spawn,     	   SHCMD("reboot") },
