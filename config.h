@@ -119,6 +119,7 @@ static Key keys[] = {
     { MODKEY,                        XK_Print,    spawn,       SHCMD("gnome-screenshot -a -f /storage/pictures/$(date '+%F_%T').png") },
     { MODKEY,                        XK_i,        spawn,       SHCMD("subl3 -w ~/.config/dwm/config.h") },
     { MODKEY,                        XK_u,        spawn,       SHCMD("unmount") },
+    { MODKEY|ShiftMask,				 XK_u,        spawn,       SHCMD("st -c qalc bash -ic \"hkp\"") },
     { MODKEY,                        XK_g,        spawn,       SHCMD("pgrep mutt && wmctrl -x -a mail || st -c mail -n mail -g 100x25+350+200 bash -c \"wmctrl -x -a mail;mutt\"") },
     { MODKEY,                        XK_m,        spawn,       SHCMD("mount-all") },
     { MODKEY,                        XK_r,        spawn,       SHCMD("subl3 ~/.config/ranger/rc.conf") },
